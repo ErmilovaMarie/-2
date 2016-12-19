@@ -1,0 +1,34 @@
+.name{
+	font-size: 30px;
+	font-family: 'Poiret One', cursive;
+	color: #312f54;
+}
+.personal-info{
+	font-size: 15px;
+	font-family: 'Poiret One', cursive;
+	
+}
+#personal_info {
+	width: 80%;
+	margin: auto;
+	padding-top: 20vh;
+	height: 100vh;
+	background-color: rgba(232, 232, 232, 0.5);
+}
+#personal_info p {
+	font-size: 3em;
+}
+#personal_info h4 {
+	font-size: 1.8em;
+}
+#invention-form {
+	width: 70%;
+	margin: auto;
+	
+}
+#invention-form label {
+	font-weight: 100;
+}
+#table th {
+	font-weight: 100;
+}

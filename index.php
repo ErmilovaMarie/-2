@@ -1,0 +1,387 @@
+﻿
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Кулибин</title>
+	<link href="https://fonts.googleapis.com/css?family=Playfair+Display" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=EB+Garamond" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Poiret+One" rel="stylesheet">
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/common.css" rel="stylesheet">
+	<link href="css/media-queries.css" rel="stylesheet" type="text/css">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	  <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+    <![endif]-->
+	<script src="https://use.fontawesome.com/4c200ea55b.js"></script>
+	<SCRIPT type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></SCRIPT>
+	
+  </head>
+  <body>
+
+	<header>
+			<nav role="navigation" class="navbar navbar-default navbar-static-top" style="margin-bottom: 0px;"">
+  <!-- Логотип и мобильное меню -->
+				<div class="container-fluid">
+					<div class="navbar-header">
+						<button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+					</div>
+				  <!-- Навигационное меню -->
+					<div id="navbarCollapse" class="collapse navbar-collapse">
+					  <ul class="nav navbar-nav navbar-right">
+						<li class="active"><a href="#">Главная</a></li>
+						<li><a href="#">Задачки</a></li>
+						<li><a href="#">Изобретения</a></li>
+						<li><a href="#">Изобретатели</a></li>
+						<li><a href="#">Конкурсы</a></li>
+						<li><a href="personal_page/personal_page.php">Личный кабинет</a></li>
+						</ul>
+					</div>
+				</div>
+			</nav>	
+		<div class="container-fluid" id="header">
+			<div class="row">
+				<div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
+					<h1 id="header_logo" class="text-center">Кулибин 2.0<h1>
+					<div class="intro-text">
+						<p class="text-center text-muted header_quote">"Найди то, что нужно миру и только потом начинай изобретать"</p>
+						<p class="text-center text-muted  header_quote">Томас Алва Эдисон</p>
+					</div>
+					<br>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-12 col-md-12 col-xs-12 col-sm-12 buttons_menu">
+					<a href="#" class=" btn  header_buttons" id="selected">Войти</a>
+					<!-- Кнопка, для открытия модального окна -->
+					<a href="#" class="btn header_buttons" data-toggle="modal" data-target="#feedbackForm">Регистрация</a>
+				</div>
+			</div>
+			<!-- Форма обратной связи в модальном окне -->
+			<div class="modal fade" id="feedbackForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+							<h4 class="modal-title" id="myModalLabel">Регистрация</h4>
+						</div>
+					<div class="modal-body">
+					<!-- Сообщение, отображаемое в случае успешной отправки данных -->
+					<div class="alert alert-success hidden" role="alert" id="msgSubmit" style="margin-bottom: 0px;">
+						  Вы успешно зарегистрировались!
+					</div>
+					<!-- Форма заявки -->
+					<form id="messageForm" action="registration.php" method="post" enctype="multipart/form-data">
+						<div class="row">
+							<div id="error" class="col-sm-12" style="color: #ff0000; margin-top: 5px; margin-bottom: 5px;">
+							</div>
+								<!-- Имя и email пользователя -->
+							<div class="col-sm-6">
+								<!-- Имя пользователя -->
+								<div class="form-group has-feedback">
+									<label for="name" class="control-label">Введите ваше имя:</label>
+									<input type="text" id="name" name="name" class="form-control" required="required" value="" placeholder="Например, Иван Иванович" minlength="2" maxlength="100">
+									<span class="glyphicon form-control-feedback"></span>
+								</div>
+							</div>
+							<div class="col-sm-6">
+							  <!-- Имя пользователя -->
+								<div class="form-group has-feedback">
+									<label for="name" class="control-label">Введите логин:</label>
+									<input type="text" id="name" name="login" class="form-control" required="required" value="" minlength="2" placeholder="Придумайте логин" maxlength="100">
+									<span class="glyphicon form-control-feedback"></span>
+								</div>
+							</div>
+							<div class="col-sm-6">
+							  <!-- Email пользователя -->
+								<div class="form-group has-feedback">
+									<label for="email" class="control-label">Введите адрес email:</label>
+									<input type="email" id="email" name="email" class="form-control" required="required"  value="" placeholder="Например, ivan@mail.ru" maxlength="100">
+									<span class="glyphicon form-control-feedback"></span>
+								</div>
+							</div>
+							<div class="col-sm-6">
+							  <!-- Пароль пользователя -->
+								<div class="form-group has-feedback">
+									<label for="password" class="control-label">Придумайте пароль:</label>
+									<input type="password" id="password" name="password" class="form-control" required="required"  value="" minlength="6" placeholder="Введите пароль" maxlength="30">
+									<span class="glyphicon form-control-feedback"></span>
+								</div>
+							</div>
+							<div class="col-sm-6">
+							  <!-- Дата рождения пользователя -->
+								<div class="form-group has-feedback">
+									<label for="date" class="control-label">Дата рождения:</label>
+									<input type="date" id="date" name="birthday" class="form-control" required="required"  value="" maxlength="30" style="padding-right: 0;">
+									<span class="glyphicon form-control-feedback"></span>
+								</div>
+							</div>
+							<div class="col-sm-6">
+							  <!-- Пол пользователя -->
+								<div class="form-group has-feedback radio" style="padding-top: 20px;">
+										<label style="padding-left: 0px;">Выберите ваш пол:</label>
+										<div class="radio-inline">
+											<label for="male" class="control-label">
+												<input type="radio" id="check" name="optionsRadios" required="required" value="male"> М
+											</label>
+										</div>
+										<div class="radio-inline">
+											<label for="male" class="control-label" style="padding-left: 0px;">
+												<input type="radio" id="check" name="optionsRadios" required="required" value="female"> Ж
+											</label>
+										</div>
+									<span class="glyphicon form-control-feedback"></span>
+								</div>
+							</div>
+							<div class="col-sm-6 push-left">
+							  <!--  Город пользователя -->
+								<div class="form-group has-feedback">
+									<label for="name" class="control-label">Введите город:</label>
+									<input type="text" id="city" name="city" class="form-control" rows="3" required="required" value="" minlength="2" placeholder="Придумайте логин" maxlength="200">
+									<span class="glyphicon form-control-feedback"></span>
+								</div>
+							</div>
+							<div class="col-sm-12">
+							  <!--  Интересы пользователя -->
+								<div class="form-group has-feedback">
+									<label for="name" class="control-label">Опишите свои интересы:</label>
+									<input type="text" id="hobbies" name="hobbies" class="form-control" required="required" value="" minlength="2" placeholder="Придумайте логин" maxlength="30">
+									<span class="glyphicon form-control-feedback"></span>
+								</div>
+							</div>
+						</div>
+						 
+						  <!-- Кнопка, отправляющая форму по технологии AJAX -->  
+						<button name="send-message" type="submit" class="btn btn-primary pull-right">Регистрация</button>
+					</form><!-- Конец формы -->
+					<div class="clearfix"></div>
+			 
+					</div>
+				  </div>
+				</div>
+			 </div>
+			
+		</div>
+	</header>	
+	<section id="picture">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-lg-12 col-md-12 col-xs-12 col-sm-12 text-center introduction">
+					<p class="lead">Наука - это не скучно!</p>
+					<p class="lead">Наука - это одновременно и система знаний и их духовное производство, и практическая деятельность на их основе.</p>
+					<hr>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-12 col-md-12 col-xs-12 col-sm-12 text-center introduction">
+					<p class="lead text-center">Кулибин 2.0 и далее текст типа "О НАС"</p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-12 col-md-12 col-xs-12 col-sm-12 picture_table table-responsive">
+				<img src="image/hand.png" class="img-responsive">
+			</div>
+			</div>
+		</div>
+	</section>
+	<section id="news">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-lg-6 col-md-6 col-xs-12 col-sm-12 text-center news_div" style="border-right: 5px solid #F5F5F5;">
+					<img class="img-responsive news_img" src="image/newspaper.svg">
+					 <?php
+						include "admin/connection.php";
+
+						$select = "SELECT * FROM news ORDER BY ID DESC limit 1";
+						$sql_res = mysqli_query($mysqli, $select);
+						while ($row = mysqli_fetch_assoc($sql_res))
+						{
+							echo '<a href="#" data-toggle="modal" data-target="#moreNews"><h4>'.$row['name'].'</h4></a></br>';
+							echo '<p class="label label-default">'.$row['date'].'</p></br>';
+							echo '<p>'.$row['description'].'</p></br>';
+						}
+						
+					?> 
+					<!-- Вывод новости в модальном окне -->
+					<div class="modal fade" id="moreNews" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+						<div class="modal-dialog" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>	
+								</div>
+								<div class="modal-body">
+								<!-- Вывод полной новости-->
+									<?php
+									include "admin/connection.php";
+
+									$select = "SELECT * FROM news ORDER BY ID DESC limit 1";
+									$sql_res = mysqli_query($mysqli, $select);
+									while ($row = mysqli_fetch_assoc($sql_res))
+									{
+										echo '<a href="#" data-toggle="modal" data-target="#moreNews"><h4>'.$row['name'].'</h4></a>';
+										echo '<p class="label label-default">'.$row['date'].'</p>';
+										echo '<p>'.$row['text'].'</p>';
+									}
+								?>
+								<div class="clearfix"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="col-lg-6 col-md-6 col-xs-12 col-sm-12 text-center news_div">
+					<img class="img-responsive news_img" src="image/warning.svg" style="width: 50.453px; height: auto;">
+					<?php
+						include "admin/connection.php";
+
+						$select = "SELECT * FROM competition ORDER BY ID DESC limit 1";
+						$sql_res = mysqli_query($mysqli, $select);
+						while ($row = mysqli_fetch_assoc($sql_res))
+						{
+							echo '<a href="#" data-toggle="modal" data-target="#moreCompetition"><h4>'.$row['name'].'</h4></a>';
+							echo '<p class="label label-default">'.$row['date'].'</p>';
+							echo '<p>'.$row['description'].'</p>';
+						}
+						
+					?> 
+					<!-- Вывод конкурса в модальном окне -->
+					<div class="modal fade" id="moreCompetition" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+						<div class="modal-dialog" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>	
+								</div>
+								<div class="modal-body">
+								<!-- Вывод полного конкурса-->
+									<?php
+										include "admin/connection.php";
+
+										$select = "SELECT * FROM competition ORDER BY ID DESC limit 1";
+										$sql_res = mysqli_query($mysqli, $select);
+										while ($row = mysqli_fetch_assoc($sql_res))
+										{
+											echo '<a href="#""><h4>'.$row['name'].'</h4></a></br>';
+											echo '<p class="label label-default">'.$row['date'].'</p></br>';
+											echo '<p>'.$row['text'].'</p></br>';
+										}
+										echo '<a href="competition.php">Перейти на страницу с конкурсами</a></br>';
+									?> 
+								<div class="clearfix"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-6 col-md-6 col-xs-12 col-sm-12 text-center news_div" style="border-right: 5px solid #F5F5F5; border-top: 5px solid #F5F5F5;">
+					<img class="img-responsive news_img" src="image/light-bulb.svg">
+					<?php
+						include "admin/connection.php";
+
+						$select = "SELECT * FROM invention ORDER BY ID DESC limit 1";
+						$sql_res = mysqli_query($mysqli, $select);
+						while ($row = mysqli_fetch_assoc($sql_res))
+						{
+							echo '<a href="#" data-toggle="modal" data-target="#moreInvention"><h4>'.$row['name'].'</h4></a>';
+							echo '<p class="label label-default">'.$row['date'].'</p>';
+							echo '<p>'.$row['smalldescription'].'</p>';
+						}
+						
+					?> 
+					<!-- Вывод изобретения в модальном окне -->
+					<div class="modal fade" id="moreInvention" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+						<div class="modal-dialog" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>	
+								</div>
+								<div class="modal-body">
+								<!-- Вывод полного описания изобретения-->
+									<?php
+										include "admin/connection.php";
+
+										$select = "SELECT * FROM invention ORDER BY ID DESC limit 1";
+										$sql_res = mysqli_query($mysqli, $select);
+										while ($row = mysqli_fetch_assoc($sql_res))
+										{
+											echo '<a href="#"><h4>'.$row['name'].'</h4></a>';
+											echo '<p class="label label-default">'.$row['date'].'</p>';
+											echo '<p>'.$row['description'].'</p>';
+										}
+										echo '<a href="invention.php">Перейти на страницу с изобретениями</a></br>';
+									?> 
+								<div class="clearfix"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-6 col-md-6 col-xs-12 col-sm-12 text-center news_div" style="border-top: 5px solid #F5F5F5;">
+					<img class="img-responsive news_img" src="image/projection.svg" style="width: 50.453px; height: auto;">
+					<?php
+						include "admin/connection.php";
+
+						$select = "SELECT * FROM interesting ORDER BY ID DESC limit 1";
+						$sql_res = mysqli_query($mysqli, $select);
+						while ($row = mysqli_fetch_assoc($sql_res))
+						{
+							echo '<a href="#"><h4>'.$row['name'].'</h4></a>';
+							echo '<p class="label label-default">'.$row['date'].'</p>';
+							echo '<p>'.$row['smalldescription'].'</p>';
+						}
+						
+					?> 
+				</div>
+			</div>
+		</div>
+	</section>
+	<section id="signup">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-lg-12 col-md-12 col-xs-12 col-sm-12 text-center signup">
+					<h2>Присоединяйтесь, чтобы сделашь шаг навстречу изобретениям</h2>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section id="social">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-lg-12 col-md-12 col-xs-12 col-sm-12 text-center social">
+					<a href="#"><i class="fa fa-vk fa-lg" aria-hidden="true"></i></a>
+					<a href="#"><i class="fa fa-instagram fa-lg" aria-hidden="true"></i></a>
+					<a href="#"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a>
+				</div>
+				<div class="col-lg-12 col-md-12 col-xs-12 col-sm-12 text-center social_text">
+					<p>© Untitled. All rights reserved.</p>
+					<a href="admin/admin.php">Administrator</a>
+				</div>
+			</div>
+		</div>
+	</section>
+	
+	
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+	<script src="js/jquery-1.12.4.min.js"></script>
+	<script src="js/script.js"></script>
+	
+  </body>
+</html>
