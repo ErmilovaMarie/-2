@@ -1,4 +1,7 @@
-﻿
+<?php
+require_once 'lib.php';
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="ru">
   <head>
@@ -29,30 +32,68 @@
   <body>
 
 	<header>
+		<div class="container-fluid">
 			<nav role="navigation" class="navbar navbar-default navbar-static-top" style="margin-bottom: 0px;"">
   <!-- Логотип и мобильное меню -->
-				<div class="container-fluid">
-					<div class="navbar-header">
-						<button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
-							<span class="sr-only">Toggle navigation</span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-						</button>
-					</div>
-				  <!-- Навигационное меню -->
-					<div id="navbarCollapse" class="collapse navbar-collapse">
-					  <ul class="nav navbar-nav navbar-right">
-						<li class="active"><a href="#">Главная</a></li>
-						<li><a href="#">Задачки</a></li>
-						<li><a href="#">Изобретения</a></li>
-						<li><a href="#">Изобретатели</a></li>
-						<li><a href="#">Конкурсы</a></li>
-						<li><a href="personal_page/personal_page.php">Личный кабинет</a></li>
-						</ul>
-					</div>
+				<div class="navbar-header">
+					<button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>	
 				</div>
-			</nav>	
+			  <!-- Навигационное меню -->
+				<div id="navbarCollapse" class="collapse navbar-collapse">
+				  <ul class="nav navbar-nav navbar-right">
+					<li class="active"><a href="#">Главная</a></li>
+					<li><a href="#">Новичку</a></li>
+					<li><a href="#">Задачки</a></li>
+					<li><a href="#">Изобретения</a></li>
+					<li><a href="#">Изобретатели</a></li>
+					<li><a href="#">Конкурсы</a></li>
+					<?php
+                    if(user_is_auth()){
+						echo "<li><a href=\"personal_page/index.php\">".login_get()."</a></li>";
+						echo "<li><a href='exit.php'>Выйти</a></li>";
+                    }
+					else{
+					?>
+					<li><a href="#" data-toggle="modal" data-target=".bs-example-modal-sm">Войти</a></li>
+					<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+                            <div class="modal-dialog modal-sm" role="document">
+                                <div class="modal-content">
+                                    <form action="auth.php" method="post">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                            <h4 class="modal-title" id="myModalLabel">Авторизация</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="form-group">
+                                                <label for="login">Логин</label>
+                                                <input type="text" required name="login" class="form-control" id="login" placeholder="Логин">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="password">Пароль</label>
+                                                <input type="password" required name="password" class="form-control" id="password" placeholder="Пароль">
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+                                            <button type="submit" class="btn btn-primary">Войти</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+					<?php
+						}
+					?>
+					
+					</ul>
+				</div>
+			</nav>
+		</div>
 		<div class="container-fluid" id="header">
 			<div class="row">
 				<div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
@@ -66,114 +107,152 @@
 			</div>
 			<div class="row">
 				<div class="col-lg-12 col-md-12 col-xs-12 col-sm-12 buttons_menu">
-					<a href="#" class=" btn  header_buttons" id="selected">Войти</a>
-					<!-- Кнопка, для открытия модального окна -->
-					<a href="#" class="btn header_buttons" data-toggle="modal" data-target="#feedbackForm">Регистрация</a>
+                    <?php
+                    if(user_is_auth()){
+                        echo "<p class='btn  header_buttons'>".login_get()."</p>";
+                        echo "<a href='exit.php' class='btn  header_buttons'>Выйти</a>";
+                    }
+                    else{
+                    ?>
+                        <a href="#" class=" btn  header_buttons" id="selected" data-toggle="modal" data-target=".bs-example-modal-sm">Войти</a>
+                        <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+                            <div class="modal-dialog modal-sm" role="document">
+                                <div class="modal-content">
+                                    <form action="auth.php" method="post">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                            <h4 class="modal-title" id="myModalLabel">Авторизация</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="form-group">
+                                                <label for="login">Логин</label>
+                                                <input type="text" required name="login" class="form-control" id="login" placeholder="Логин">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="password">Пароль</label>
+                                                <input type="password" required name="password" class="form-control" id="password" placeholder="Пароль">
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+                                            <button type="submit" class="btn btn-primary">Войти</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Кнопка, для открытия модального окна -->
+                        <a href="#" class="btn header_buttons" data-toggle="modal" data-target="#feedbackForm">Регистрация</a>
+
+                        <!-- Форма обратной связи в модальном окне -->
+                        <div class="modal fade" id="feedbackForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                        <h4 class="modal-title" id="myModalLabel">Регистрация</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <!-- Сообщение, отображаемое в случае успешной отправки данных -->
+                                        <div class="alert alert-success hidden" role="alert" id="msgSubmit" style="margin-bottom: 0px;">
+                                            Вы успешно зарегистрировались!
+                                        </div>
+                                        <!-- Форма заявки -->
+                                        <form id="" action="registration.php" method="post">
+                                            <div class="row">
+                                                <div id="error" class="col-sm-12" style="color: #ff0000; margin-top: 5px; margin-bottom: 5px;">
+                                                </div>
+                                                <!-- Имя и email пользователя -->
+                                                <div class="col-sm-6">
+                                                    <!-- Имя пользователя -->
+                                                    <div class="form-group has-feedback">
+                                                        <label for="name" class="control-label">Введите ваше имя:</label>
+                                                        <input type="text" id="name" name="name" class="form-control" required="required" placeholder="Например, Иван Иванович" minlength="2" maxlength="30">
+                                                        <span class="glyphicon form-control-feedback"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <!-- Имя пользователя -->
+                                                    <div class="form-group has-feedback">
+                                                        <label for="login" class="control-label">Введите логин:</label>
+                                                        <input type="text" id="login" name="login" class="form-control" required="required" minlength="2" placeholder="Придумайте логин" maxlength="30">
+                                                        <span class="glyphicon form-control-feedback"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <!-- Email пользователя -->
+                                                    <div class="form-group has-feedback">
+                                                        <label for="email" class="control-label">Введите адрес email:</label>
+                                                        <input type="email" id="email" name="email" class="form-control" required="required"  placeholder="Например, ivan@mail.ru" maxlength="30">
+                                                        <span class="glyphicon form-control-feedback"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <!-- Пароль пользователя -->
+                                                    <div class="form-group has-feedback">
+                                                        <label for="password" class="control-label">Придумайте пароль:</label>
+                                                        <input type="password" id="password" name="password" class="form-control" required="required" placeholder="Введите пароль" maxlength="30">
+                                                        <span class="glyphicon form-control-feedback"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <!-- Дата рождения пользователя -->
+                                                    <div class="form-group has-feedback">
+                                                        <label for="date" class="control-label">Дата рождения:</label>
+                                                        <input type="date" id="date" name="birthday" class="form-control" required="required" maxlength="30" style="padding-right: 0;">
+                                                        <span class="glyphicon form-control-feedback"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <!-- Пол пользователя -->
+                                                    <div class="form-group has-feedback radio" style="padding-top: 20px;">
+                                                        <label style="padding-left: 0px;">Выберите ваш пол:</label>
+                                                        <div class="radio-inline">
+                                                            <label for="male" class="control-label">
+                                                                <input type="radio" id="check" name="optionsRadios" required="required"> М
+                                                            </label>
+                                                        </div>
+                                                        <div class="radio-inline">
+                                                            <label for="male" class="control-label" style="padding-left: 0px;">
+                                                                <input type="radio" id="check" name="optionsRadios" required="required"> Ж
+                                                            </label>
+                                                        </div>
+                                                        <span class="glyphicon form-control-feedback"></span>
+                                                    </div>
+												</div>
+												</div>
+												<div class="col-sm-6">
+													  <!--  Город пользователя -->
+														<div class="form-group has-feedback">
+															<label for="name" class="control-label">Введите город:</label>
+															<input type="text" id="city" name="city" class="form-control" rows="3" required="required" value="" minlength="2" placeholder="Введите город" maxlength="50">
+															<span class="glyphicon form-control-feedback"></span>
+														</div>
+												</div>
+												<div class="col-sm-6">
+													<!--  Интересы пользователя -->
+													<div class="form-group has-feedback">
+														<label for="name" class="control-label">Опишите свои интересы:</label>
+														<input type="text" id="hobbies" name="hobbies" class="form-control" required="required" value="" minlength="2" placeholder="Опишите свои интересы" maxlength="30">
+														<span class="glyphicon form-control-feedback"></span>
+													</div>
+												</div>
+                                            </div>
+
+                                            <!-- Кнопка, отправляющая форму по технологии AJAX -->
+                                            <button name="send-message" type="submit" class="btn btn-primary pull-right">Регистрация</button>
+                                        </form><!-- Конец формы -->
+                                        <div class="clearfix"></div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <?php
+                    }
+                    ?>
 				</div>
 			</div>
-			<!-- Форма обратной связи в модальном окне -->
-			<div class="modal fade" id="feedbackForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-				<div class="modal-dialog" role="document">
-					<div class="modal-content">
-						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-							<h4 class="modal-title" id="myModalLabel">Регистрация</h4>
-						</div>
-					<div class="modal-body">
-					<!-- Сообщение, отображаемое в случае успешной отправки данных -->
-					<div class="alert alert-success hidden" role="alert" id="msgSubmit" style="margin-bottom: 0px;">
-						  Вы успешно зарегистрировались!
-					</div>
-					<!-- Форма заявки -->
-					<form id="messageForm" action="registration.php" method="post" enctype="multipart/form-data">
-						<div class="row">
-							<div id="error" class="col-sm-12" style="color: #ff0000; margin-top: 5px; margin-bottom: 5px;">
-							</div>
-								<!-- Имя и email пользователя -->
-							<div class="col-sm-6">
-								<!-- Имя пользователя -->
-								<div class="form-group has-feedback">
-									<label for="name" class="control-label">Введите ваше имя:</label>
-									<input type="text" id="name" name="name" class="form-control" required="required" value="" placeholder="Например, Иван Иванович" minlength="2" maxlength="100">
-									<span class="glyphicon form-control-feedback"></span>
-								</div>
-							</div>
-							<div class="col-sm-6">
-							  <!-- Имя пользователя -->
-								<div class="form-group has-feedback">
-									<label for="name" class="control-label">Введите логин:</label>
-									<input type="text" id="name" name="login" class="form-control" required="required" value="" minlength="2" placeholder="Придумайте логин" maxlength="100">
-									<span class="glyphicon form-control-feedback"></span>
-								</div>
-							</div>
-							<div class="col-sm-6">
-							  <!-- Email пользователя -->
-								<div class="form-group has-feedback">
-									<label for="email" class="control-label">Введите адрес email:</label>
-									<input type="email" id="email" name="email" class="form-control" required="required"  value="" placeholder="Например, ivan@mail.ru" maxlength="100">
-									<span class="glyphicon form-control-feedback"></span>
-								</div>
-							</div>
-							<div class="col-sm-6">
-							  <!-- Пароль пользователя -->
-								<div class="form-group has-feedback">
-									<label for="password" class="control-label">Придумайте пароль:</label>
-									<input type="password" id="password" name="password" class="form-control" required="required"  value="" minlength="6" placeholder="Введите пароль" maxlength="30">
-									<span class="glyphicon form-control-feedback"></span>
-								</div>
-							</div>
-							<div class="col-sm-6">
-							  <!-- Дата рождения пользователя -->
-								<div class="form-group has-feedback">
-									<label for="date" class="control-label">Дата рождения:</label>
-									<input type="date" id="date" name="birthday" class="form-control" required="required"  value="" maxlength="30" style="padding-right: 0;">
-									<span class="glyphicon form-control-feedback"></span>
-								</div>
-							</div>
-							<div class="col-sm-6">
-							  <!-- Пол пользователя -->
-								<div class="form-group has-feedback radio" style="padding-top: 20px;">
-										<label style="padding-left: 0px;">Выберите ваш пол:</label>
-										<div class="radio-inline">
-											<label for="male" class="control-label">
-												<input type="radio" id="check" name="optionsRadios" required="required" value="male"> М
-											</label>
-										</div>
-										<div class="radio-inline">
-											<label for="male" class="control-label" style="padding-left: 0px;">
-												<input type="radio" id="check" name="optionsRadios" required="required" value="female"> Ж
-											</label>
-										</div>
-									<span class="glyphicon form-control-feedback"></span>
-								</div>
-							</div>
-							<div class="col-sm-6 push-left">
-							  <!--  Город пользователя -->
-								<div class="form-group has-feedback">
-									<label for="name" class="control-label">Введите город:</label>
-									<input type="text" id="city" name="city" class="form-control" rows="3" required="required" value="" minlength="2" placeholder="Придумайте логин" maxlength="200">
-									<span class="glyphicon form-control-feedback"></span>
-								</div>
-							</div>
-							<div class="col-sm-12">
-							  <!--  Интересы пользователя -->
-								<div class="form-group has-feedback">
-									<label for="name" class="control-label">Опишите свои интересы:</label>
-									<input type="text" id="hobbies" name="hobbies" class="form-control" required="required" value="" minlength="2" placeholder="Придумайте логин" maxlength="30">
-									<span class="glyphicon form-control-feedback"></span>
-								</div>
-							</div>
-						</div>
-						 
-						  <!-- Кнопка, отправляющая форму по технологии AJAX -->  
-						<button name="send-message" type="submit" class="btn btn-primary pull-right">Регистрация</button>
-					</form><!-- Конец формы -->
-					<div class="clearfix"></div>
-			 
-					</div>
-				  </div>
-				</div>
-			 </div>
 			
 		</div>
 	</header>	
@@ -210,42 +289,15 @@
 						$sql_res = mysqli_query($mysqli, $select);
 						while ($row = mysqli_fetch_assoc($sql_res))
 						{
-							echo '<a href="#" data-toggle="modal" data-target="#moreNews"><h4>'.$row['name'].'</h4></a></br>';
-							echo '<p class="label label-default">'.$row['date'].'</p></br>';
-							echo '<p>'.$row['description'].'</p></br>';
+							echo '<a href="#"><h4>'.$row['name'].'</h4></a>';
+							echo '<p class="label label-default">'.$row['date'].'</p>';
+							echo '<p>'.$row['description'].'</p>';
 						}
 						
 					?> 
-					<!-- Вывод новости в модальном окне -->
-					<div class="modal fade" id="moreNews" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-						<div class="modal-dialog" role="document">
-							<div class="modal-content">
-								<div class="modal-header">
-									<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>	
-								</div>
-								<div class="modal-body">
-								<!-- Вывод полной новости-->
-									<?php
-									include "admin/connection.php";
-
-									$select = "SELECT * FROM news ORDER BY ID DESC limit 1";
-									$sql_res = mysqli_query($mysqli, $select);
-									while ($row = mysqli_fetch_assoc($sql_res))
-									{
-										echo '<a href="#" data-toggle="modal" data-target="#moreNews"><h4>'.$row['name'].'</h4></a>';
-										echo '<p class="label label-default">'.$row['date'].'</p>';
-										echo '<p>'.$row['text'].'</p>';
-									}
-								?>
-								<div class="clearfix"></div>
-								</div>
-							</div>
-						</div>
-					</div>
 				</div>
-				
 				<div class="col-lg-6 col-md-6 col-xs-12 col-sm-12 text-center news_div">
-					<img class="img-responsive news_img" src="image/warning.svg" style="width: 50.453px; height: auto;">
+					<img class="img-responsive news_img" src="image/warning.svg" style="width: 75.8px; height: auto;">
 					<?php
 						include "admin/connection.php";
 
@@ -253,39 +305,12 @@
 						$sql_res = mysqli_query($mysqli, $select);
 						while ($row = mysqli_fetch_assoc($sql_res))
 						{
-							echo '<a href="#" data-toggle="modal" data-target="#moreCompetition"><h4>'.$row['name'].'</h4></a>';
+							echo '<a href="#"><h4>'.$row['name'].'</h4></a>';
 							echo '<p class="label label-default">'.$row['date'].'</p>';
 							echo '<p>'.$row['description'].'</p>';
 						}
 						
 					?> 
-					<!-- Вывод конкурса в модальном окне -->
-					<div class="modal fade" id="moreCompetition" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-						<div class="modal-dialog" role="document">
-							<div class="modal-content">
-								<div class="modal-header">
-									<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>	
-								</div>
-								<div class="modal-body">
-								<!-- Вывод полного конкурса-->
-									<?php
-										include "admin/connection.php";
-
-										$select = "SELECT * FROM competition ORDER BY ID DESC limit 1";
-										$sql_res = mysqli_query($mysqli, $select);
-										while ($row = mysqli_fetch_assoc($sql_res))
-										{
-											echo '<a href="#""><h4>'.$row['name'].'</h4></a></br>';
-											echo '<p class="label label-default">'.$row['date'].'</p></br>';
-											echo '<p>'.$row['text'].'</p></br>';
-										}
-										echo '<a href="competition.php">Перейти на страницу с конкурсами</a></br>';
-									?> 
-								<div class="clearfix"></div>
-								</div>
-							</div>
-						</div>
-					</div>
 				</div>
 				<div class="col-lg-6 col-md-6 col-xs-12 col-sm-12 text-center news_div" style="border-right: 5px solid #F5F5F5; border-top: 5px solid #F5F5F5;">
 					<img class="img-responsive news_img" src="image/light-bulb.svg">
@@ -296,42 +321,15 @@
 						$sql_res = mysqli_query($mysqli, $select);
 						while ($row = mysqli_fetch_assoc($sql_res))
 						{
-							echo '<a href="#" data-toggle="modal" data-target="#moreInvention"><h4>'.$row['name'].'</h4></a>';
+							echo '<a href="#"><h4>'.$row['name'].'</h4></a>';
 							echo '<p class="label label-default">'.$row['date'].'</p>';
 							echo '<p>'.$row['smalldescription'].'</p>';
 						}
 						
 					?> 
-					<!-- Вывод изобретения в модальном окне -->
-					<div class="modal fade" id="moreInvention" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-						<div class="modal-dialog" role="document">
-							<div class="modal-content">
-								<div class="modal-header">
-									<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>	
-								</div>
-								<div class="modal-body">
-								<!-- Вывод полного описания изобретения-->
-									<?php
-										include "admin/connection.php";
-
-										$select = "SELECT * FROM invention ORDER BY ID DESC limit 1";
-										$sql_res = mysqli_query($mysqli, $select);
-										while ($row = mysqli_fetch_assoc($sql_res))
-										{
-											echo '<a href="#"><h4>'.$row['name'].'</h4></a>';
-											echo '<p class="label label-default">'.$row['date'].'</p>';
-											echo '<p>'.$row['description'].'</p>';
-										}
-										echo '<a href="invention.php">Перейти на страницу с изобретениями</a></br>';
-									?> 
-								<div class="clearfix"></div>
-								</div>
-							</div>
-						</div>
-					</div>
 				</div>
 				<div class="col-lg-6 col-md-6 col-xs-12 col-sm-12 text-center news_div" style="border-top: 5px solid #F5F5F5;">
-					<img class="img-responsive news_img" src="image/projection.svg" style="width: 50.453px; height: auto;">
+					<img class="img-responsive news_img" src="image/projection.svg" style="width: 75.8px; height: auto;">
 					<?php
 						include "admin/connection.php";
 

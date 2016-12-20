@@ -1,3 +1,7 @@
+<?php
+require_once '../lib.php';
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="ru">
   <head>

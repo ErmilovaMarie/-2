@@ -1,3 +1,17 @@
+<?php
+	$person = login_get();
+	$sql_name = "SELECT id, name, login, birthday, email, password, male 
+							FROM registration WHERE login='".$person."'";
+	$result = mysqli_query($mysqli, $sql_name);
+	while($users = mysqli_fetch_assoc($result))
+	{
+		$name = $users['name'];
+		$login = $users['login'];
+		$email = $users['email'];
+		$city = $users['city'];
+		$hobbies = $users['hobbies'];
+	}
+?>
 <section id="personal_info">
 	<div class="container">
 		<div class="row " style="margin-top: 10px;">
@@ -7,25 +21,45 @@
 		
 			<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
 				<div class="intro-text">
-					<p class="name lead text-left" style="font-family: 'Poiret One', cursive;">Иванов Иван Иванович, 15</p>
+					<p class="name lead text-left" style="font-family: 'Poiret One', cursive;">
+						<?php
+							echo $name;
+						?>
+					</p>
 				</div>
 			</div>
 			<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
 				<div class="intro-text">
-					<h4 class=" text-left" style="font-family: 'EB Garamond', serif;">Email:<small> ojsdcjsj@mail.ru</small></h4>
+					<h4 class=" text-left" style="font-family: 'EB Garamond', serif;">Имя:<small>
+					<?php
+						echo $name;
+					?> </small></h4>
 				</div>
 			</div>
 			<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
 				<div class="intro-text">
-					<h4 class=" text-left" style="font-family: 'EB Garamond', serif;">Город:<small>Москва</small></h4>
+					<h4 class=" text-left" style="font-family: 'EB Garamond', serif;">Email:<small>
+					<?php
+						echo $email;
+					?> </small></h4>
 				</div>
 			</div>
 			<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
 				<div class="intro-text">
-					<h4 class=" text-left" style="font-family: 'EB Garamond', serif;">Интересы:<small>Люблю программировать</small></h4>
+					<h4 class=" text-left" style="font-family: 'EB Garamond', serif;">Город:<small>
+					<?php
+						echo $city;
+					?></small></h4>
 				</div>
 			</div>
-		
+			<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+				<div class="intro-text">
+					<h4 class=" text-left" style="font-family: 'EB Garamond', serif;">Интересы:<small>
+					<?php
+						echo $hobbies;
+					?></small></h4>
+				</div>
+			</div>
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 				<div class="text-center">
 				<!-- Кнопка, для открытия модального окна -->

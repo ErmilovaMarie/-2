@@ -1,5 +1,6 @@
 <?php
 include 'admin/connection.php';
+include 'lib.php';
 
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
 	$name = $_POST['name'];
@@ -8,12 +9,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 	$password = $_POST['password'];
 	$birthday = $_POST['birthday'];
 	$optionsRadios = $_POST['optionsRadios'];
-	$city = $_POST['city'];
-	$hobbies = $_POST['hobbies'];
 	
-	
-	$sql = "INSERT INTO registration(name, login, birthday, email, password, male, city, hobbies) VALUES(
-								'$name', '$login', '$birthday', '$email', '$password', '$optionsRadios', '$city', '$hobbies')";
+	$sql = "INSERT INTO registration(name, login, birthday, email, password, male) VALUES('$name', '$login', '$birthday', '$email', '$password', '$male')";
 			
 	
 	if(!mysqli_query($mysqli, $sql)){
@@ -23,4 +20,3 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 		header('Location: index.php');
 	}
 }
-?>
