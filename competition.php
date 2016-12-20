@@ -76,10 +76,10 @@ session_start();
 				  <ul class="nav navbar-nav navbar-right">
 					<li><a href="index.php">Главная</a></li>
 					<li><a href="#">Новичку</a></li>
-					<li class="active"><a href="tasks.php">Задачки</a></li>
+					<li><a href="tasks.php">Задачки</a></li>
 					<li><a href="invention.php">Изобретения</a></li>
 					<li><a href="inventors.php">Изобретатели</a></li>
-					<li><a href="competition.php">Конкурсы</a></li>
+					<li class="active"><a href="competition.php">Конкурсы</a></li>
 					<?php
                     if(user_is_auth()){
 						echo "<li><a href=\"personal_page/index.php\">".login_get()."</a></li>";
@@ -100,8 +100,8 @@ session_start();
 				<div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
 					<h1 id="header_logo" class="text-center">Кулибин 2.0<h1>
 					<div class="intro-text">
-						<p class="text-center text-muted header_quote">"Успешными бывают только невыполнимые задачи."</p>
-						<p class="text-center text-muted  header_quote">Жак-Ив Кусто</p>
+						<p class="text-center text-muted header_quote">"Ваша идея, конечно, безумна. Весь вопрос в том, достаточно ли она безумна, чтобы оказаться верной."</p>
+						<p class="text-center text-muted  header_quote">Нильс Бор</p>
 					</div>
 					<br>
 				</div>

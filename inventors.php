@@ -76,9 +76,9 @@ session_start();
 				  <ul class="nav navbar-nav navbar-right">
 					<li><a href="index.php">Главная</a></li>
 					<li><a href="#">Новичку</a></li>
-					<li class="active"><a href="tasks.php">Задачки</a></li>
+					<li><a href="tasks.php">Задачки</a></li>
 					<li><a href="invention.php">Изобретения</a></li>
-					<li><a href="inventors.php">Изобретатели</a></li>
+					<li class="active"><a href="inventors.php">Изобретатели</a></li>
 					<li><a href="competition.php">Конкурсы</a></li>
 					<?php
                     if(user_is_auth()){
@@ -100,8 +100,8 @@ session_start();
 				<div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
 					<h1 id="header_logo" class="text-center">Кулибин 2.0<h1>
 					<div class="intro-text">
-						<p class="text-center text-muted header_quote">"Успешными бывают только невыполнимые задачи."</p>
-						<p class="text-center text-muted  header_quote">Жак-Ив Кусто</p>
+						<p class="text-center text-muted header_quote">"Вам знакомо выражение "Выше головы не прыгнешь"?Это заблуждение. Человек может все."</p>
+						<p class="text-center text-muted  header_quote">Никола Тесла</p>
 					</div>
 					<br>
 				</div>
