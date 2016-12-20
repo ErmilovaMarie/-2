@@ -5,6 +5,7 @@ session_start();
 <!DOCTYPE html>
 <html lang="ru">
   <head>
+	<title>Кулибин 2.0 изобретательский портал</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -46,9 +47,9 @@ session_start();
 			  <!-- Навигационное меню -->
 				<div id="navbarCollapse" class="collapse navbar-collapse">
 				  <ul class="nav navbar-nav navbar-right">
-					<li class="active"><a href="#">Главная</a></li>
+					<li class="active"><a href="index.php">Главная</a></li>
 					<li><a href="#">Новичку</a></li>
-					<li><a href="#">Задачки</a></li>
+					<li><a href="tasks.php">Задачки</a></li>
 					<li><a href="#">Изобретения</a></li>
 					<li><a href="#">Изобретатели</a></li>
 					<li><a href="#">Конкурсы</a></li>
@@ -59,33 +60,8 @@ session_start();
                     }
 					else{
 					?>
-					<li><a href="#" data-toggle="modal" data-target=".bs-example-modal-sm">Войти</a></li>
-					<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
-                            <div class="modal-dialog modal-sm" role="document">
-                                <div class="modal-content">
-                                    <form action="auth.php" method="post">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                            <h4 class="modal-title" id="myModalLabel">Авторизация</h4>
-                                        </div>
-                                        <div class="modal-body">
-                                            <div class="form-group">
-                                                <label for="login">Логин</label>
-                                                <input type="text" required name="login" class="form-control" id="login" placeholder="Логин">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="password">Пароль</label>
-                                                <input type="password" required name="password" class="form-control" id="password" placeholder="Пароль">
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
-                                            <button type="submit" class="btn btn-primary">Войти</button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
+					<li><a href="#" data-toggle="modal" data-target="#auth">Войти</a></li>
+					
 					<?php
 						}
 					?>
@@ -114,30 +90,32 @@ session_start();
                     }
                     else{
                     ?>
-                        <a href="#" class=" btn  header_buttons" id="selected" data-toggle="modal" data-target=".bs-example-modal-sm">Войти</a>
-                        <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+                        <a href="#" class=" btn  header_buttons" id="selected" data-toggle="modal" data-target="#auth">Войти</a>
+                        <div class="modal fade bs-example-modal-sm" id="auth" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
                             <div class="modal-dialog modal-sm" role="document">
                                 <div class="modal-content">
-                                    <form action="auth.php" method="post">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                            <h4 class="modal-title" id="myModalLabel">Авторизация</h4>
-                                        </div>
-                                        <div class="modal-body">
-                                            <div class="form-group">
-                                                <label for="login">Логин</label>
-                                                <input type="text" required name="login" class="form-control" id="login" placeholder="Логин">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="password">Пароль</label>
-                                                <input type="password" required name="password" class="form-control" id="password" placeholder="Пароль">
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
-                                            <button type="submit" class="btn btn-primary">Войти</button>
-                                        </div>
-                                    </form>
+									<div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                         <h4 class="modal-title" id="myModalLabel">Авторизация</h4>
+                                    </div>
+									<div class="modal-body">
+										<form action="auth.php" method="post"> 
+											<div class="modal-body">
+												<div class="form-group">
+													<label for="login">Логин</label>
+													<input type="text" required name="login" class="form-control" id="login" placeholder="Логин">
+												</div>
+												<div class="form-group">
+													<label for="password">Пароль</label>
+													<input type="password" required name="password" class="form-control" id="password" placeholder="Пароль">
+												</div>
+											</div>
+											<div class="modal-footer">
+												
+												<button type="submit" class="btn btn-primary">Войти</button>
+											</div>
+										</form>
+									</div>
                                 </div>
                             </div>
                         </div>
@@ -289,12 +267,38 @@ session_start();
 						$sql_res = mysqli_query($mysqli, $select);
 						while ($row = mysqli_fetch_assoc($sql_res))
 						{
-							echo '<a href="#"><h4>'.$row['name'].'</h4></a>';
-							echo '<p class="label label-default">'.$row['date'].'</p>';
-							echo '<p>'.$row['description'].'</p>';
+							echo '<a href="#" data-toggle="modal" data-target="#moreNews"><h4>'.$row['name'].'</h4></a></br>';
+							echo '<p class="label label-default">'.$row['date'].'</p></br>';
+							echo '<p>'.$row['description'].'</p></br>';
 						}
 						
 					?> 
+					<!-- Вывод новости в модальном окне -->
+					<div class="modal fade" id="moreNews" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+						<div class="modal-dialog" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>	
+								</div>
+								<div class="modal-body">
+								<!-- Вывод полной новости-->
+									<?php
+									include "admin/connection.php";
+
+									$select = "SELECT * FROM news ORDER BY ID DESC limit 1";
+									$sql_res = mysqli_query($mysqli, $select);
+									while ($row = mysqli_fetch_assoc($sql_res))
+									{
+										echo '<a href="#"><h4>'.$row['name'].'</h4></a>';
+										echo '<p class="label label-default">'.$row['date'].'</p>';
+										echo '<p>'.$row['text'].'</p>';
+									}
+								?>
+								<div class="clearfix"></div>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 				<div class="col-lg-6 col-md-6 col-xs-12 col-sm-12 text-center news_div">
 					<img class="img-responsive news_img" src="image/warning.svg" style="width: 75.8px; height: auto;">
@@ -305,12 +309,39 @@ session_start();
 						$sql_res = mysqli_query($mysqli, $select);
 						while ($row = mysqli_fetch_assoc($sql_res))
 						{
-							echo '<a href="#"><h4>'.$row['name'].'</h4></a>';
+							echo '<a href="#" data-toggle="modal" data-target="#moreCompetition"><h4>'.$row['name'].'</h4></a>';
 							echo '<p class="label label-default">'.$row['date'].'</p>';
 							echo '<p>'.$row['description'].'</p>';
 						}
 						
-					?> 
+					?>  
+					<!-- Вывод конкурса в модальном окне -->
+					<div class="modal fade" id="moreCompetition" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+						<div class="modal-dialog" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>	
+								</div>
+								<div class="modal-body">
+								<!-- Вывод полного конкурса-->
+									<?php
+										include "admin/connection.php";
+
+										$select = "SELECT * FROM competition ORDER BY ID DESC limit 1";
+										$sql_res = mysqli_query($mysqli, $select);
+										while ($row = mysqli_fetch_assoc($sql_res))
+										{
+											echo '<a href="#""><h4>'.$row['name'].'</h4></a></br>';
+											echo '<p class="label label-default">'.$row['date'].'</p></br>';
+											echo '<p>'.$row['text'].'</p></br>';
+										}
+										echo '<a href="competition.php">Перейти на страницу с конкурсами</a></br>';
+									?> 
+								<div class="clearfix"></div>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 				<div class="col-lg-6 col-md-6 col-xs-12 col-sm-12 text-center news_div" style="border-right: 5px solid #F5F5F5; border-top: 5px solid #F5F5F5;">
 					<img class="img-responsive news_img" src="image/light-bulb.svg">
@@ -321,12 +352,39 @@ session_start();
 						$sql_res = mysqli_query($mysqli, $select);
 						while ($row = mysqli_fetch_assoc($sql_res))
 						{
-							echo '<a href="#"><h4>'.$row['name'].'</h4></a>';
+							echo '<a href="#" data-toggle="modal" data-target="#moreInvention"><h4>'.$row['name'].'</h4></a>';
 							echo '<p class="label label-default">'.$row['date'].'</p>';
 							echo '<p>'.$row['smalldescription'].'</p>';
 						}
 						
 					?> 
+					<!-- Вывод изобретения в модальном окне -->
+					<div class="modal fade" id="moreInvention" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+						<div class="modal-dialog" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>	
+								</div>
+								<div class="modal-body">
+								<!-- Вывод полного описания изобретения-->
+									<?php
+										include "admin/connection.php";
+
+										$select = "SELECT * FROM invention ORDER BY ID DESC limit 1";
+										$sql_res = mysqli_query($mysqli, $select);
+										while ($row = mysqli_fetch_assoc($sql_res))
+										{
+											echo '<a href="#"><h4>'.$row['name'].'</h4></a>';
+											echo '<p class="label label-default">'.$row['date'].'</p>';
+											echo '<p>'.$row['description'].'</p>';
+										}
+										echo '<a href="invention.php">Перейти на страницу с изобретениями</a></br>';
+									?> 
+								<div class="clearfix"></div>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 				<div class="col-lg-6 col-md-6 col-xs-12 col-sm-12 text-center news_div" style="border-top: 5px solid #F5F5F5;">
 					<img class="img-responsive news_img" src="image/projection.svg" style="width: 75.8px; height: auto;">
@@ -337,12 +395,40 @@ session_start();
 						$sql_res = mysqli_query($mysqli, $select);
 						while ($row = mysqli_fetch_assoc($sql_res))
 						{
-							echo '<a href="#"><h4>'.$row['name'].'</h4></a>';
+							echo '<a href="#" data-toggle="modal" data-target="#moreInteresting"><h4>'.$row['name'].'</h4></a>';
 							echo '<p class="label label-default">'.$row['date'].'</p>';
 							echo '<p>'.$row['smalldescription'].'</p>';
 						}
 						
 					?> 
+					<!-- Вывод события в модальном окне -->
+					<div class="modal fade" id="moreInteresting" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+						<div class="modal-dialog" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>	
+								</div>
+								<div class="modal-body">
+								<!-- Вывод полного описания события-->
+									<?php
+										include "admin/connection.php";
+
+										$select = "SELECT * FROM interesting ORDER BY ID DESC limit 1";
+										$sql_res = mysqli_query($mysqli, $select);
+										while ($row = mysqli_fetch_assoc($sql_res))
+										{	
+											echo '<a href="'.$row['link'].'"><h4>'.$row['name'].'</h4></a>';
+											echo '<p class="label label-default">'.$row['date'].'</p>';
+											echo '<p>'.$row['description'].'</p>';
+										}
+										
+									?> 
+								<div class="clearfix"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+					</div>
 				</div>
 			</div>
 		</div>
