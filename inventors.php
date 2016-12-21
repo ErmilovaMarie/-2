@@ -78,7 +78,6 @@
 				<div id="navbarCollapse" class="collapse navbar-collapse">
 				  <ul class="nav navbar-nav navbar-right">
 					<li><a href="index.php">Главная</a></li>
-					<li><a href="#">Новичку</a></li>
 					<li><a href="tasks.php">Задачки</a></li>
 					<li><a href="invention.php">Изобретения</a></li>
 					<li class="active"><a href="inventors.php">Изобретатели</a></li>

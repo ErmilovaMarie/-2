@@ -6,14 +6,14 @@
 	if ($_POST['name'] != '' && $_POST['date'] != '' && $_POST['text'] != ''
 		&& $_POST['button'] && $_POST['button'] == 'Отправить')
 		{
-			$query = "INSERT INTO tasks (name, date, text) VALUES ('".htmlspecialchars($_POST['name'])."',
+			$query = "INSERT INTO my_tasks (name, date, text) VALUES ('".htmlspecialchars($_POST['name'])."',
 																								'".htmlspecialchars($_POST['date'])."',
 																								'".htmlspecialchars($_POST['text'])."')";
 			$sql_res = mysqli_query ($mysqli, $query);
 		}
 		//удаление из базы данных
 		if (isset ($_GET['del_id']))
-			$delete = mysqli_query ($mysqli, 'DELETE FROM tasks WHERE id=\''.$_GET['del_id'].'\';');
+			$delete = mysqli_query ($mysqli, 'DELETE FROM my_tasks WHERE id=\''.$_GET['del_id'].'\';');
 ?>
 <h2 class="text-center" style="font-family: 'Poiret One', cursive; margin-bottom: 10vh;">Добавить задачу</h2>
 <section id="invention-form">
@@ -52,7 +52,7 @@
 	<div class="container">
 		<div class="row table-responsive">
 			<?php
-				$select = "SELECT * from tasks";
+				$select = "SELECT * from my_tasks";
 				$sql_res = mysqli_query($mysqli, $select);
 				$ret = '<table class="table table-striped" style="width: 80%; margin: auto; margin-bottom: 100px;">';
 				$ret .= '<tr><th>#</th><th>Название задачки</th><th>Дата</th><th>Текст задачки</th><th>Удалить</th></tr>';
@@ -70,24 +70,6 @@
 					echo $ret;//возвращаем сформированный контент
 								
 			?>
-			<!--<table class="table table-hover">
-				<tr class="active">
-					<td>№</td>
-					<td>Название задачки</td>
-					<td>Текст задачки</td>
-					<td>Фото</td>
-					<td>Редактировать</td>
-					<td>Удалить</td>
-				</tr>
-				<tr>
-					<td>1</td>
-					<td>Помогите Юле пойти спать</td>
-					<td>Юля нифига не делала весь семестр, а сейчас хочет, чтобы Маша ее не убила. Нужно решить как ей поспать и не быть убитой.</td>
-					<td>Сылка на фото</td>
-					<td><button type="button" class="btn btn-warning">Редактировать</button></td>
-					<td><button type="button" class="btn btn-danger">Удалить</button></td>
-				</tr>
-			</table>-->
 		</div>
 	</div>
 </div>

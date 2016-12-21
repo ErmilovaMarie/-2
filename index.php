@@ -48,7 +48,7 @@ session_start();
 				<div id="navbarCollapse" class="collapse navbar-collapse">
 				  <ul class="nav navbar-nav navbar-right">
 					<li class="active"><a href="index.php">Главная</a></li>
-					<li><a href="#">Новичку</a></li>
+					
 					<li><a href="tasks.php">Задачки</a></li>
 					<li><a href="invention.php">Изобретения</a></li>
 					<li><a href="inventors.php">Изобретатели</a></li>
@@ -85,7 +85,7 @@ session_start();
 				<div class="col-lg-12 col-md-12 col-xs-12 col-sm-12 buttons_menu">
                     <?php
                     if(user_is_auth()){
-                        echo "<p class='btn  header_buttons'>".login_get()."</p>";
+                        echo "<a href=\"personal_page/index.php\" class='btn  header_buttons'>".login_get()."</a>";
                         echo "<a href='exit.php' class='btn  header_buttons'>Выйти</a>";
                     }
                     else{
