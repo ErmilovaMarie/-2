@@ -238,14 +238,18 @@ session_start();
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-lg-12 col-md-12 col-xs-12 col-sm-12 text-center introduction">
-					<p class="lead">Наука - это не скучно!</p>
-					<p class="lead">Наука - это одновременно и система знаний и их духовное производство, и практическая деятельность на их основе.</p>
+					<p class="lead" style="font-size: 1.6em;">Наука - это не скучно!</p>
+					<p class="lead" style="font-size: 1.6em;">Наука - это одновременно и система знаний и их духовное производство, и практическая деятельность на их основе.</p>
 					<hr>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-lg-12 col-md-12 col-xs-12 col-sm-12 text-center introduction">
-					<p class="lead text-center">Кулибин 2.0 и далее текст типа "О НАС"</p>
+					<p class="lead text-center" style="font-size: 1.6em;">Если вы видите Кулибин 2.0, то вы пришли по адресу и можете смело считать себя изобретателями.</p>
+					<p class="lead text-center" style="font-size: 1.6em;">Как известно, изобретатели - люди, чьи открытия находят свое применение через много лет.
+												Вы спросите почему? Потому что величайшие рукописи пылились в дальних ящиках никому не известных людей.</p>
+					<p class="lead text-center" style="font-size: 1.6em;">Кулибин 2.0 - платформа, где каждый может не только решать логичские задачки, но и 
+																			изучать изобретения других людей, добавлять свои открытия и участвовать в конкурсах.</p></br>							
 				</div>
 			</div>
 			<div class="row">

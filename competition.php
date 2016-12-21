@@ -1,6 +1,9 @@
 <?php
-require_once 'lib.php';
-session_start();
+	include "admin/connection.php";
+?>
+<?php
+	require_once 'lib.php';
+	session_start();
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -112,8 +115,21 @@ session_start();
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-lg-12 col-md-12 col-xs-12 col-sm-12 text-center introduction">
-					<p class="lead">Наука - это не скучно!</p>
-					<p class="lead">Наука - это одновременно и система знаний и их духовное производство, и практическая деятельность на их основе.</p>
+					<?php
+							$select = "SELECT * from competition";
+							$sql_res = mysqli_query($mysqli, $select);
+							$ret = '<div class="row">';
+							
+							$ret.= '<div class="col-lg-12 col-md-12 col-xs-12 col-sm-12 text-center">';
+							while ($row = mysqli_fetch_assoc($sql_res)){
+							$ret.= '<hr style="padding: 20px;" style="width: 70%;">
+									<h2>'.$row['name'].'</h2>
+									<p>'.$row['date'].'</p>
+									<p>'.$row['text'].'</p>'
+							;}
+							$ret.= '</div></div>';
+							echo $ret;
+						?>
 					<hr>
 				</div>
 			</div>

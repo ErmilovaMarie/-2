@@ -1,6 +1,6 @@
 <?php
 	$person = login_get();
-	$sql_name = "SELECT id, name, login, birthday, email, password, male 
+	$sql_name = "SELECT id, name, login, birthday, email, password, male, city, hobbies 
 							FROM registration WHERE login='".$person."'";
 	$result = mysqli_query($mysqli, $sql_name);
 	while($users = mysqli_fetch_assoc($result))
@@ -52,7 +52,7 @@
 					?></small></h4>
 				</div>
 			</div>
-			<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+			<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 pull-right">
 				<div class="intro-text">
 					<h4 class=" text-left" style="font-family: 'EB Garamond', serif;">Интересы:<small>
 					<?php
